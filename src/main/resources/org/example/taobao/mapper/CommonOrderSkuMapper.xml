@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.taobao.mapper.CommonOrderSkuMapper">
+
+
+    <insert id="insertShoppingSku">
+        insert into common_order_sku
+        (order_id,sku_id,spu_id,number,price,spu_name,spu_img)
+        values
+            (#{orderId},#{skuId},#{spuId},#{number},#{price},#{spuName},#{spuImg})
+    </insert>
+</mapper>

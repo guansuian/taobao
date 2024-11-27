@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.taobao.mapper.OrderMapper">
+
+    <insert id="insertSeckillerOrder">
+        insert into `order`
+        (id,user_id,spu_id,sku_id,order_create_date,number,spu_name,total_price,status)
+        values
+        (#{id},#{userId},#{spuId},#{skuId},#{currentTime},#{number},#{spuName},#{totalPrice},1)
+    </insert>
+    <insert id="insertExOrderSeckillerOrder">
+        insert into `order`
+        (id,user_id,spu_id,sku_id,order_create_date,number,spu_name,total_price,status)
+        values
+            (#{id},#{userId},#{spuId},#{skuId},#{currentTime},#{number},#{spuName},#{totalPrice},6)
+    </insert>
+</mapper>

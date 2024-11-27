@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.taobao.mapper.ShoppingMapper">
+
+
+    <select id="gainNoPassShop" resultType="org.example.taobao.vo.ShoppingVo">
+        SELECT * FROM shop WHERE shopkeeper_id = #{id} AND pass = 'refuse' or pass = 'no'
+    </select>
+
+    <select id="gainYesPassShop" resultType="org.example.taobao.vo.ShoppingVo">
+        SELECT * FROM shop WHERE shopkeeper_id = #{id} AND pass = 'yes'
+    </select>
+    <select id="gainShopVoByShopId" resultType="org.example.taobao.vo.ShoppingVo">
+        select * from shop as sh
+        inner join spu as sp on sh.id = sp.shop_id
+        where sp.id = #{spuId}
+    </select>
+
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.example.taobao.mapper.CommonOrderMapper">
+
+
+    <insert id="insertCommonOrder">
+        insert into common_order
+        (id,user_id,order_create_date,status,total_price,shopping_id,shopping_name,father_order_id)
+        values
+            (#{id},#{userId},#{currentTime},1,#{totalPrice},#{shoppingId},#{shoppingName},#{fatherOrderId})
+    </insert>
+    <select id="gainCommonOrderByOrderId" resultType="org.example.taobao.pojo.CommonOrder">
+        select
+            id as orderId,user_id as userId,order_create_date as orderCreateDate,status,
+            total_price as totalPrice,shopping_id as shoppingId,pay_no as payNo,
+            pay_time as payTime,father_order_id as fatherOrderId,
+            shopping_name as shoppingName
+        from
+            common_order
+        where id = #{orderId}
+    </select>
+    <select id="gainCommonOrderListByUserId" resultType="org.example.taobao.pojo.CommonOrder">
+        select
+            id as orderId,user_id as userId,order_create_date as orderCreateDate,status,
+            total_price as totalPrice,shopping_id as shoppingId,pay_no as payNo,
+            pay_time as payTime,father_order_id as fatherOrderId,
+            shopping_name as shoppingName,refund_result as refundResult
+        from
+            common_order
+        where user_id = #{userId} and ( status = #{status} or status = 5)
+    </select>
+
+    <select id="gainShopKeeperRefundBuShopppingId" resultType="org.example.taobao.pojo.CommonOrder">
+        select
+            id as orderId,user_id as userId,order_create_date as orderCreateDate,status,
+            total_price as totalPrice,shopping_id as shoppingId,pay_no as payNo,
+            pay_time as payTime,father_order_id as fatherOrderId,
+            shopping_name as shoppingName,refund_result as refundResult
+        from
+            common_order
+        where shopping_id = #{shoppingId} and  status = 5
+    </select>
+
+</mapper>
